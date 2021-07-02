@@ -132,23 +132,14 @@
 
           </p>
           <div class="row mt-4">
+            {% for ap in profile_info.aboutexp.all %}
             <div class="col-4 text-center">
-              <h2>8+</h2>
-              <p>Years <br> Experience</p>
+              <h2>{{ap.digit}}+</h2>
+              <p>{{ap.title}} <br> {{ap.subtitle}}</p>
               <!-- <p>Experience</p> -->
             </div>
-
-            <div class="col-4 text-center">
-              <h2>8+</h2>
-              <p>Projects <br> Completed</p>
-              <!-- <p>Completed</p> -->
-            </div>
-
-            <div class="col-4 text-center">
-              <h2>8+</h2>
-              <p>Worked <br> Companies</p>
-
-            </div>
+            {%endfor%}
+     
           </div>
 
           <div class="text-center">
@@ -172,25 +163,32 @@
       <div class="row">
         <div class="col">
           <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            {% for dev in dev_cat %}
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                  <strong><i class="uil uil-arrow"></i> Frontend</strong>
+                  data-bs-target="#flush-collapseOne-{{forloop.counter}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <strong><i class="{{dev.icon}}"></i> {{dev.title_cat}}</strong>
                 </button>
               </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+              <div id="flush-collapseOne-{{forloop.counter}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
+
+                  {% for lan in dev.developer.all %}
                   <div class="d-flex justify-content-between">
-                    <span>HTML</span>
-                    <span>25%</span>
+                    <span>{{lan.title}}</span>
+                    <span>{{lan.digit}}%</span>
                   </div>
                   <div class="progress mb-2">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75"
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{lan.digit}}%;" aria-valuenow="{{lan.digit}}"
                       aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
+                  {%endfor%}
 
+
+<!-- 
                   CSS
                   <div class="progress mb-2">
                     <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75"
@@ -207,60 +205,15 @@
                   <div class="progress mb-2">
                     <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75"
                       aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
+                  </div> -->
 
                   <!-- Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div> -->
                 </div>
               </div>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                  <!-- <p class="lead"></p> -->
-                  <strong> <i class="uil uil-brackets-curly"></i> Backend</strong>
-                </button>
-              </h2>
-              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
-                data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                  Placeholder content for this accordion, which is intended to demonstrate the
-                  <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this
-                  being filled with some actual content.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                  <!-- <p class="lead"></p> -->
-                  <strong><i class="uil uil-robot"></i> Machine Learning/Data Science</strong>
-                </button>
-              </h2>
-              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
-                data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
-                  <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting
-                  happening here in terms of content, but just filling up the space to make it look, at least at first
-                  glance, a bit more representative of how this would look in a real-world application.</div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="flush-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseThree">
-                  <!-- <p class="lead"> </p> -->
-                  <strong><i class="uil uil-code-branch"></i> Tools</strong>
-                </button>
-              </h2>
-              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
-                data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the
-                  <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting
-                  happening here in terms of content, but just filling up the space to make it look, at least at first
-                  glance, a bit more representative of how this would look in a real-world application.</div>
-              </div>
-            </div>
+
+            {%endfor%}
+
 
           </div>
         </div>
