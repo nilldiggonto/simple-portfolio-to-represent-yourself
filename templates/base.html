@@ -301,35 +301,39 @@
       </div>
 
       <div class="row">
+
+        {% for s in profile_info.service.all %}
+
         <div class="col-6 col-md-3 mb-2">
           <div class="card">
             <div class="card-body">
-              <h2><i class="uil uil-arrow"></i></h2>
-              <h4>Frontend Developer</h4>
+              <h2><i class="{{s.icon}}"></i></h2>
+              <h4>{{s.title}}</h4>
 
-              <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm">View More <i
+              <button data-bs-toggle="modal" data-bs-target="#modal-{{forloop.counter}}" class="btn btn-sm">View More <i
                   class="uil uil-arrow-right"></i></button>
             </div>
           </div>
 
 
           <!--modal-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          <div class="modal fade" id="modal-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content" style="top: 100px;">
                 <div class="modal-header" style="border: none !important;">
                   <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
-                  <h5 class="modal-title">Frontend Developer</h5>
+                  <h5 class="modal-title">{{s.title}}</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <p><i class="uil uil-arrow-circle-right"></i> I develope user interface</p>
-                  <p><i class="uil uil-arrow-circle-right"></i> I develope user interface</p>
-                  <p><i class="uil uil-arrow-circle-right"></i> I develope user interface</p>
-                  <p><i class="uil uil-arrow-circle-right"></i> I develope user interface</p>
-                  <p><i class="uil uil-arrow-circle-right"></i> I develope user interface</p>
-
+                  
+                  <p><i class="uil uil-arrow-circle-right"></i> {{s.sdetail.one}}</p>
+                  <p><i class="uil uil-arrow-circle-right"></i> {{s.sdetail.two}}</p>
+                  <p><i class="uil uil-arrow-circle-right"></i> {{s.sdetail.three}}</p>
+                  <p><i class="uil uil-arrow-circle-right"></i> {{s.sdetail.four}}</p>
+                  <p><i class="uil uil-arrow-circle-right"></i> {{s.sdetail.five}}</p>
+                  
                 </div>
                 <!-- <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -340,46 +344,7 @@
           </div>
 
         </div>
-
-        <div class="col-6 col-md-3 mb-2">
-          <div class="card">
-            <div class="card-body">
-              <h2><i class="uil uil-arrow"></i></h2>
-
-              <!-- <p class="lead"><i class="uil uil-arrow"></i></p> -->
-              <h4>Frontend Developer</h4>
-
-              <button class="btn">View More <i class="uil uil-arrow-right"></i></button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 mb-2">
-          <div class="card">
-            <div class="card-body">
-              <h2><i class="uil uil-arrow"></i></h2>
-
-              <!-- <p class="lead"><i class="uil uil-arrow"></i></p> -->
-              <h4>Frontend Developer</h4>
-
-              <button class="btn">View More <i class="uil uil-arrow-right"></i></button>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 col-md-3 mb-2">
-          <div class="card">
-            <div class="card-body">
-              <h2><i class="uil uil-arrow"></i></h2>
-
-              <!-- <p class="lead"><i class="uil uil-arrow"></i></p> -->
-              <h4>Frontend Developer</h4>
-
-              <button class="btn">View More <i class="uil uil-arrow-right"></i></button>
-            </div>
-          </div>
-        </div>
-
+        {%endfor %}
 
       </div>
     </div>
@@ -450,21 +415,21 @@
             <div class="col-12  col-md-6">
               <div>
                 <h4><i class="uil uil-phone"></i> Call Me</h4>
-              <a href="tel:+8801627566047">
-                <p style="color: grey;">+88 01627566047</p>
+              <a href="tel:{{profile_info.phone_no}}">
+                <p style="color: grey;">{{profile_info.phone_no}}</p>
               </a>
               </div>
 
               <div>
                 <h4><i class="uil uil-envelope-minus"></i> Email</h4>
-                <a href="mailto:moinulantu@gmail.com" target="_blank">
-                  <p style="color: grey;">moinulantu@gmail.com</p>
+                <a href="mailto:{{profile_info.email}}" target="_blank">
+                  <p style="color: grey;">{{profile_info.email}}</p>
                 </a>
               </div>
 
               <div>
                 <h4><i class="uil uil-location-point"></i> Location</h4>
-                <p style="color: grey;">Road no 3,Mohammadpur,Dhaka</p>
+                <p style="color: grey;">{{profile_info.location}}</p>
               </div>
             </div>
             <div class="col-12 col-md-6">

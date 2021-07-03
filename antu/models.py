@@ -9,6 +9,9 @@ class ProfileModel(models.Model):
     insta       =   models.CharField(max_length=120)
     details     =   models.TextField()
     personal_info   = models.TextField(null=True,blank=True)
+    phone_no        = models.CharField(max_length=120,default="+8801627566047")
+    email           =   models.CharField(max_length=120,default="moinulantu@gmail.com")
+    location        =   models.CharField(max_length=120,default="3 no Road,Dhaka")
 
     picture     =   models.ImageField(upload_to='antu/profile/',blank=True,null=True)
     picture_two =   models.ImageField(upload_to='antu/profile/',blank=True,null=True)
@@ -69,3 +72,23 @@ class Portfolio(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ServiceCategory(models.Model):
+    title   = models.CharField(max_length=50)
+    icon    = models.CharField(max_length=120)
+    profile_s = models.ForeignKey(ProfileModel,related_name='service',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+class ServiceDetails(models.Model):
+    one     =   models.CharField(max_length=120)
+    two     =   models.CharField(max_length=120)   
+    three   =   models.CharField(max_length=120)
+    four    =   models.CharField(max_length=120)
+    five    =   models.CharField(max_length=120)  
+    serve   =   models.OneToOneField(ServiceCategory,related_name='sdetail',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.serve) 
