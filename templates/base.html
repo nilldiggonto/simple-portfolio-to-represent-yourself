@@ -250,31 +250,38 @@
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="row text-center">
+
+              {% for edu in profile_info.educationwork.all %}
+                {%if edu.typeofwork == 'E' %}
               <div class="col-6 ">
-                <h4>Computer Engineer</h4>
-                <p style="color: gray;">Daffodil Internation University <br><i class="uil uil-calendar-alt"></i>
-                  2015-2020</p>
+                <h4>{{edu.title}}</h4>
+                <p style="color: gray;">{{edu.organization}} <br><i class="uil uil-calendar-alt"></i>
+                  {{edu.start_date}}-{{edu.end_date}}</p>
                 <!-- <p></p> -->
               </div>
-              <div class="col-6">
+              {%endif%}
+              {%endfor%}
+
+              <!-- <div class="col-6">
                 <h4>Computer Engineer</h4>
                 <p>Daffodil Internation University <br><i class="uil uil-calendar-alt"></i> 2015-2020</p>
-                <!-- <p></p> -->
-              </div>
+          
+              </div> -->
             </div>
           </div>
           <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <div class="row text-center">
-              <div class="col-6">
-                <h4>Computer Engineer</h4>
-                <p>Daffodil Internation University <br>2015-2020</p>
+
+              {% for edu in profile_info.educationwork.all %}
+                {%if edu.typeofwork == 'W' %}
+              <div class="col-6 ">
+                <h4>{{edu.title}}</h4>
+                <p style="color: gray;">{{edu.organization}} <br><i class="uil uil-calendar-alt"></i>
+                  {{edu.start_date}}-{{edu.end_date}}</p>
                 <!-- <p></p> -->
               </div>
-              <div class="col-6">
-                <h4>Computer Engineer</h4>
-                <p>Daffodil Internation University <br>2015-2020</p>
-                <!-- <p></p> -->
-              </div>
+              {%endif%}
+              {%endfor%}
             </div>
           </div>
           <!-- <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div> -->
@@ -401,53 +408,26 @@
         <div class="container" style="width: 80%;">
           <div class="carousel-inner">
             <!-- <h4>what is here</h4> -->
-            <div class="carousel-item active" data-bs-interval="10000">
+
+            {% for port in profile_info.portfolio.all %}
+            <div class="carousel-item {%if forloop.counter == 1 %} active {%endif%}" data-bs-interval="20000">
               <div class="row">
                 <div class="col-12 col-md-4">
-                  <img src="https://wonderfulengineering.com/wp-content/uploads/2014/06/star-wallpapers-21.jpg" alt=""
+                  <img src="{{port.image.url}}" alt=""
                     class="img-fluid">
                 </div>
                 <div class="col-12 col-md-8 mt-2">
-                  <h4>Auction House</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas delectus assumenda reiciendis ad
-                    voluptatem veritatis.
+                  <h4>{{port.title}}</h4>
+                  <p>{{prot.description}}
 
                   </p>
+                  <a href="{{port.link}}" class="btn btn-sm btn-primary">Project Link</a>
                 </div>
               </div>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  <img src="https://wonderfulengineering.com/wp-content/uploads/2014/06/star-wallpapers-21.jpg" alt=""
-                    class="img-fluid">
-                </div>
-                <div class="col-12 col-md-8 mt-2">
-                  <h4>Auction House</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas delectus assumenda reiciendis ad
-                    voluptatem veritatis.
+            {%endfor%}
 
-                  </p>
-                </div>
-              </div>
-              <!-- <img style="height: 250px;" src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" class="d-block w-100" alt="..."> -->
-            </div>
-            <div class="carousel-item">
-              <div class="row">
-                <div class="col-12 col-md-4">
-                  <img src="https://wonderfulengineering.com/wp-content/uploads/2014/06/star-wallpapers-21.jpg" alt=""
-                    class="img-fluid">
-                </div>
-                <div class="col-12 col-md-8 mt-2">
-                  <h4>Auction House</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas delectus assumenda reiciendis ad
-                    voluptatem veritatis.
-
-                  </p>
-                </div>
-              </div>
-              <!-- <img style="height: 250px;" src="https://images.unsplash.com/photo-1475274047050-1d0c0975c63e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" class="d-block w-100" alt="..."> -->
-            </div>
+        
           </div>
 
         </div>
@@ -470,12 +450,16 @@
             <div class="col-12  col-md-6">
               <div>
                 <h4><i class="uil uil-phone"></i> Call Me</h4>
+              <a href="tel:+8801627566047">
                 <p style="color: grey;">+88 01627566047</p>
+              </a>
               </div>
 
               <div>
                 <h4><i class="uil uil-envelope-minus"></i> Email</h4>
-                <p style="color: grey;">moinulantu@gmail.com</p>
+                <a href="mailto:moinulantu@gmail.com" target="_blank">
+                  <p style="color: grey;">moinulantu@gmail.com</p>
+                </a>
               </div>
 
               <div>

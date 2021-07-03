@@ -44,3 +44,28 @@ class DeveloperPercentage(models.Model):
     def __str__(self):
         return self.title
 
+class EducationAndWork(models.Model):
+    TYPE_OF_SYSTEM = (
+        ('E', 'Education'),
+        ('W', 'Work'),
+    )
+    title   =   models.CharField(max_length=50)
+    organization    =   models.CharField(max_length=120)
+    start_date      =   models.CharField(max_length=4)
+    end_date        =   models.CharField(max_length=4)
+    typeofwork      =   models.CharField(max_length=1, choices=TYPE_OF_SYSTEM)
+    profile         =   models.ForeignKey(ProfileModel,related_name='educationwork',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+class Portfolio(models.Model):
+    title   =   models.CharField(max_length=50)
+    link    =   models.CharField(max_length=200)
+    image   =   models.ImageField(upload_to='antu/porfolio/',blank=True,null=True)
+    description =   models.TextField()
+    profile     =   models.ForeignKey(ProfileModel,related_name='portfolio',on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
