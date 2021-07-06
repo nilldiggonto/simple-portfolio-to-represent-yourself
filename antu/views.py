@@ -3,6 +3,7 @@ from .models import ProfileModel,DeveloperCategory,Contact
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import ContactSerializer
+from rest_framework.permissions import AllowAny
 # Create your views here.
 def homePage(request):
     template_name = 'base.html'
@@ -17,13 +18,15 @@ def homePage(request):
 
 class ContactApiView(APIView):
     serializer_class  = ContactSerializer
+    # permission_classes = (AllowAny,)
 
-    def post(self,request):
-        print(request.data)
+    def post(self,request,format=None):
+        # print(request.data)
         name = request.data['name']
         msg = request.data['email']
         email   = request.data['msg']
-        print(name,email,msg)
-        return Response('msg sent')
+        # print(name,email,msg)
+        Contact.objects.create(name=name,email=email,msg=msg)
+        return Response({'status':'success','msg':'sent successfully'})
 
 
