@@ -92,3 +92,13 @@ class ServiceDetails(models.Model):
 
     def __str__(self):
         return str(self.serve) 
+
+
+class Contact(models.Model):
+    name    =   models.CharField(max_length=120)
+    email   =   models.CharField(max_length=120)
+    msg     =   models.TextField()
+    sent_at =   models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.name)

@@ -1,5 +1,8 @@
 from django.shortcuts import render,get_object_or_404
-from .models import ProfileModel,DeveloperCategory
+from .models import ProfileModel,DeveloperCategory,Contact
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import ContactSerializer
 # Create your views here.
 def homePage(request):
     template_name = 'base.html'
@@ -11,3 +14,16 @@ def homePage(request):
         'dev_cat':dev_cat
     }
     return render(request,template_name,context)
+
+class ContactApiView(APIView):
+    serializer_class  = ContactSerializer
+
+    def post(self,request):
+        print(request.data)
+        name = request.data['name']
+        msg = request.data['email']
+        email   = request.data['msg']
+        print(name,email,msg)
+        return Response('msg sent')
+
+
