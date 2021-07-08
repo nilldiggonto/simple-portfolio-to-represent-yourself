@@ -9,15 +9,22 @@ void main() {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebView(
-        initialUrl: "https://moinulportfolio.herokuapp.com/",
-        javascriptMode: JavascriptMode.unrestricted,
+      body: SafeArea(
+        child: WebView(
+          initialUrl: "https://moinulportfolio.herokuapp.com/",
+          javascriptMode: JavascriptMode.unrestricted,
+        ),
       ),
     );
   }
